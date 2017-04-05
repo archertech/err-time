@@ -62,4 +62,7 @@ class TimeBot(BotPlugin):
             answer+=country + ':\n'
             for city in sorted(country_timezones[country]):
                 answer+='\t' + city + '\n'
-        return answer
+
+        # Send the output to the user to prevent spamming the channel
+        direct_to_user = self.build_identifier(str(mess.frm.nick))
+        self.send(direct_to_user, answer)
